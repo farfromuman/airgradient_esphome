@@ -7,6 +7,8 @@ sensor:
       disabled_by_default: true
     humidity:
       name: "Humidity Raw"
+      filters:
+        - offset: -30
       id: humidity_raw
       disabled_by_default: true
     address: 0x44
