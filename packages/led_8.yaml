@@ -1,14 +1,15 @@
 light:
     # https://esphome.io/components/light/esp32_rmt_led_strip.html
-  - platform: esp32_rmt_led_strip
+  - platform: fastled_clockless
     rgb_order: GRB
     pin: GPIO10  # Pin 16
     num_leds: 8
-    rmt_channel: 0
-    chipset: ws2812
+    #rmt_channel: 0
+    chipset: WS2812B
     name: "LED Strip"
     id: led_strip
     restore_mode: RESTORE_DEFAULT_OFF
+    internal: true
 
 number:
   - platform: template
