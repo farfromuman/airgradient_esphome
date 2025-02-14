@@ -5,7 +5,7 @@ light:
     pin: GPIO10  # Pin 16
     num_leds: 8
     rmt_channel: 0
-    chipset: WS2812B
+    chipset: ws2812
     name: "LED Strip"
     id: led_strip
     restore_mode: RESTORE_DEFAULT_OFF
