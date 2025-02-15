@@ -26,3 +26,10 @@ sensor:
     id: humidity
     # https://www.airgradient.com/documentation/correction-algorithms/
     # No current correction for indoor devices, but structure in place if developed
+
+  - platform: absolute_humidity
+    name: "Humidity Absolute"
+    temperature: temp_raw
+    humidity: humidity_raw
+    # https://esphome.io/components/sensor/absolute_humidity
+    # Absolute Humidity Calculation
