@@ -1,4 +1,5 @@
 # Sets the full LED bar to a color relative to PM2.5 levels
+# Modified for 8 LEDs Strip
 # https://app.airgradient.com/dashboard/about
 
 substitutions:
