@@ -2,3 +2,13 @@
 button:
   - platform: factory_reset
     name: Restart with Factory Default Settings
+
+  - platform: safe_mode
+    id: button_safe_mode
+    name: Safe Mode Boot
+
+  - platform: restart
+    id: reboot
+    name: Reboot
+
+
