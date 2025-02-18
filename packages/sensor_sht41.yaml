@@ -1,14 +1,21 @@
+substitutions:
+  # Substitutions to calibrate sensors
+  temp_offset: '0'
+  humidity_offset: '0'
+
 sensor:
   - platform: sht4x
     # SHT40 https://esphome.io/components/sensor/sht4x.html
     temperature:
       name: "Temperature Raw"
       id: temp_raw
+      filters:
+        - offset: $temp_offset
       disabled_by_default: true
     humidity:
       name: "Humidity Raw"
       filters:
-        - offset: -30
+        - offset: $humidity_offset
       id: humidity_raw
       disabled_by_default: true
     address: 0x44
