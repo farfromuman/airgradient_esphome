@@ -1,0 +1,9 @@
+sensor:
+  - platform: bmp280_i2c
+    address: 0x76 #For AHT20 Combo use 0x77
+    update_interval: 60s
+    temperature:
+      name: "BMP temp"
+      oversampling: 2x
+    pressure:
+      name: "BMP Pressure"
