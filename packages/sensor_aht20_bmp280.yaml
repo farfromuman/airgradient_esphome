@@ -1,3 +1,8 @@
+substitutions:
+  temp_offset: '0'
+  temp_bmp_offset: '0'
+  humidity_offset: '0'
+
 sensor:
   - platform: bmp280_i2c
     address: 0x77 #For AHT20 Combo use 0x77
@@ -5,30 +10,58 @@ sensor:
     temperature:
       name: "BMP temp"
       oversampling: 2x
+      filters:
+      - offset: $temp_bmp_offset
     pressure:
       name: "BMP Pressure"
+
 
   - platform: aht10
     variant: AHT20
     address: 0x38
     update_interval: 60s
     temperature:
-      name: "AHT20 temp"
-      id: aht20_temp
+      name: "Temperature Raw"
+      id: temp_raw
       accuracy_decimals: 1
       filters:
+      - offset: $temp_offset
       - filter_out: 0.0
       - median:
           window_size: 3
           send_every: 3
           send_first_at: 1
+      disabled_by_default: true
     humidity:
-      name: "AHT20 humidity"
-      id: aht20_humidity
+      name: "Humidity Raw"
+      id: humidity_raw
       accuracy_decimals: 1
       filters:
+      - offset: $humidity_offset
       - filter_out: 0.0
       - median:
           window_size: 3
           send_every: 3
           send_first_at: 1
+      disabled_by_default: true
+
+  - platform: copy
+    source_id: temp_raw
+    name: "Temperature"
+    id: temp
+    # https://www.airgradient.com/documentation/correction-algorithms/
+    # No current correction for indoor devices, but structure in place if developed
+
+  - platform: copy
+    source_id: humidity_raw
+    name: "Humidity"
+    id: humidity
+    # https://www.airgradient.com/documentation/correction-algorithms/
+    # No current correction for indoor devices, but structure in place if developed
+
+  - platform: absolute_humidity
+    name: "Humidity Absolute"
+    temperature: temp
+    humidity: humidity
+    # https://esphome.io/components/sensor/absolute_humidity
+    # Absolute Humidity Calculation
