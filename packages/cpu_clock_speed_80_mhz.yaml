@@ -1,0 +1,4 @@
+esphome:
+  platformio_options:
+    # Save power by reducing CPU clock speed
+    board_build.f_cpu: 80000000L
